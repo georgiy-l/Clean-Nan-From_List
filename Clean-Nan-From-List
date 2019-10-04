@@ -1,0 +1,29 @@
+In [25]: x = np.array(['A', 'B', np.nan, 'D'])
+
+In [26]: x
+Out[26]: 
+array(['A', 'B', 'nan', 'D'], 
+      dtype='<U3')
+
+In [27]: x[x != 'nan']
+Out[27]: 
+array(['A', 'B', 'D'], 
+      dtype='<U3')
+
+
+In [28]: x = ['A', 'B', np.nan, 'D']
+
+In [30]: [i for i in x if i is not np.nan]
+Out[30]: ['A', 'B', 'D']
+Or as a functional approach in case you have a python list:
+
+In [34]: from operator import is_not
+
+In [35]: from functools import partial
+
+In [37]: f = partial(is_not, np.nan)
+
+In [38]: x = ['A', 'B', np.nan, 'D']
+
+In [39]: list(filter(f, x))
+Out[39]: ['A', 'B', 'D']
